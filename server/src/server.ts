@@ -1,6 +1,7 @@
 import fastifyCors from "@fastify/cors";
 import fastifyJwt from "@fastify/jwt";
 import multipart from "@fastify/multipart";
+import fastifyStatic from "@fastify/static";
 import "dotenv/config";
 import fastify from "fastify";
 import { resolve } from "node:path";
@@ -12,7 +13,7 @@ const app = fastify();
 
 app.register(multipart);
 
-app.register(require("@fastify/static"), {
+app.register(fastifyStatic, {
   root: resolve(__dirname, "../uploads"),
   prefix: "/uploads",
 });

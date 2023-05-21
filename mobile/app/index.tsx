@@ -1,16 +1,11 @@
-import { makeRedirectUri, useAuthRequest } from "expo-auth-session";
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { useRouter } from "expo-router";
 import * as SecureStore from "expo-secure-store";
-
-import { styled } from "nativewind";
 import { useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import NLWLogo from "../src/assets/nlw-spacetime-logo.svg";
-import Stripes from "../src/assets/stripes.svg";
 import { api } from "../src/service/api";
-
-const StyledStripes = styled(Stripes);
 
 const discovery = {
   authorizationEndpoint: "https://github.com/login/oauth/authorize",
@@ -46,6 +41,9 @@ export default function App() {
   }
 
   useEffect(() => {
+    console.log( makeRedirectUri({
+      scheme: "nlwspacetime",
+    }))
     if (response?.type === "success") {
       const { code } = response.params;
 
